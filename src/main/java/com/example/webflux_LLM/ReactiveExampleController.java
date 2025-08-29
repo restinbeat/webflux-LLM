@@ -19,8 +19,7 @@ public class ReactiveExampleController {
                 try {
                     log.info("현재 처리하고 있는 스레드 이름: " + Thread.currentThread().getName()); // reactor-http-nio-3 블로킹 되지 않아야 함.
                     Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                } catch (Exception e) {
                 }
                 sink.next(i);
             }
