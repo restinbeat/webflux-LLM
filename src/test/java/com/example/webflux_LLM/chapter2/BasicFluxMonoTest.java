@@ -25,7 +25,7 @@ public class BasicFluxMonoTest {
             .filter(data -> data % 4 == 0)
             .subscribe(data -> System.out.println("Mono 구독한 data! = " + data));
     }
-    
+
     @Test
     public void testFluxMonoBlock() {
         Mono<String> justString = Mono.just("String");
