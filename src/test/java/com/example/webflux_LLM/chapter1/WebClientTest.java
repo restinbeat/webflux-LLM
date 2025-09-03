@@ -1,4 +1,4 @@
-package com.example.webflux_LLM;
+package com.example.webflux_LLM.chapter1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +16,7 @@ public class WebClientTest {
             .uri("http://localhost:8080/reactive/onenine/flux")
             .retrieve()
             .bodyToFlux(Integer.class);
+
 
         intFlux.subscribe(data -> {
             System.out.println("실행 되고 있는 스레드 이름: " + Thread.currentThread().getName());

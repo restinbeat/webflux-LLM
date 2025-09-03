@@ -1,4 +1,4 @@
-package com.example.webflux_LLM;
+package com.example.webflux_LLM.chapter1;
 
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
