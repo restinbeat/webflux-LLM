@@ -77,4 +77,9 @@ public class BasicFluxOperatorTest {
 
         listMono.subscribe(data -> System.out.println("collectList가 변환한 list data = " + data));
     }
+
+    /**
+     * Mono -> Flux반환 flatMapMany
+     * Flux -> Mono반환 collectList
+     */
 }
