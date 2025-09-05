@@ -1,16 +1,48 @@
 package com.example.webflux_LLM;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 @RestController
 @RequestMapping("/reactive")
 @Slf4j
 public class ReactiveExampleController {
+
+    @GetMapping("/onenine/legacy")
+    public Mono<List<Integer>> produceOneToNineLegacy() {
+        return Mono.fromCallable(() -> {
+            List<Integer> sink = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                try {
+                    Thread.sleep(500);
+                } catch (Exception e) {
+                }
+                sink.add(i);
+            }
+            return sink;
+        }).subscribeOn(Schedulers.boundedElastic());
+    }
+
+    @GetMapping("/onenine/list")
+    public Mono<List<Integer>> produceOneToNine() {
+        return Mono.defer(() -> {
+            List<Integer> sink = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                try {
+                    Thread.sleep(500);
+                } catch (Exception e) {}
+                sink.add(i);
+            }
+            return Mono.just(sink);
+        }).subscribeOn(Schedulers.boundedElastic());
+    }
 
     @GetMapping("/onenine/flux")
     public Flux<Integer> produceOneToNineFlux() {
