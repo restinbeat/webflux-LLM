@@ -20,7 +20,7 @@ public class BasicMonoOperatorTest {
 
     /**
      * fromCollable -> 동기적인 객체를 반환할 때 사용
-     * defet -> Mono를 반환하고 사용할 때 사용
+     * defer -> Mono를 반환하고 사용할 때 사용
      */
     @Test
     public void startMonoFromFunction() {
